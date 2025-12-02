@@ -1,0 +1,554 @@
+/* =========================================== */
+/* ESTILOS GENERALES Y RESET */
+/* =========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* =========================================== */
+/* 3. MENÚ HAMBURGUESA MANUAL (Sin Bootstrap) */
+/* =========================================== */
+.navbar {
+    background: linear-gradient(90deg, #030500, #5ef201);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.logo {
+    color: #4CAF50;
+    font-size: 1.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.logo i {
+    font-size: 2.2rem;
+    color: #4CAF50;
+}
+
+/* Botón hamburguesa */
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+}
+
+.hamburger-btn span {
+    width: 30px;
+    height: 3px;
+    background-color: rgb(0, 0, 0);
+    margin: 4px 0;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Menú de navegación */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.nav-menu li {
+    margin-left: 2rem;
+}
+
+.nav-menu a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-menu a:hover {
+    background-color: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+}
+
+.nav-menu a i {
+    font-size: 1.2rem;
+}
+
+/* =========================================== */
+/* RESPONSIVIDAD - Media Queries para móvil */
+/* =========================================== */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+    }
+    
+    .hamburger-btn {
+        display: flex;
+    }
+    
+    /* Animación del botón hamburguesa */
+    .hamburger-btn.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger-btn.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger-btn.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+    
+    /* Menú móvil */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: linear-gradient(180deg, #2c3e50, #34495e);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        padding-top: 0;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+        z-index: 1000;
+    }
+    
+    .nav-menu.active {
+        right: 0;
+    }
+    
+    .nav-menu li {
+        margin: 1.5rem 0;
+        width: 80%;
+        text-align: center;
+    }
+    
+    .nav-menu a {
+        justify-content: center;
+        padding: 15px;
+        font-size: 1.2rem;
+        width: 100%;
+        border-radius: 8px;
+    }
+    
+    /* Overlay cuando el menú está abierto */
+    .nav-menu.active::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: -1;
+    }
+}
+
+/* =========================================== */
+/* 2.1 BUSCADOR Y SECCIÓN DE BÚSQUEDA */
+/* =========================================== */
+#search-section {
+    background: linear-gradient(90deg, #030500, #5ef201);
+    padding: 4rem 0 3rem;
+    color: white;
+    margin-bottom: 2rem;
+    border-radius: 0 0 40px 40px;
+}
+
+#search-section h1 {
+    font-weight: 800;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+#search-section p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+/* Input group */
+.input-group {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border-radius: 50px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+#searchInput {
+    padding: 18px 25px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 50px 0 0 50px;
+    background-color: rgba(255,255,255,0.95);
+}
+
+#searchInput:focus {
+    box-shadow: none;
+    background-color: white;
+}
+
+#searchBtn {
+    padding: 18px 35px;
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    border: none;
+    border-radius: 0 50px 50px 0;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+#searchBtn:hover {
+    background: linear-gradient(45deg, #45a049, #3d8b40);
+    transform: scale(1.02);
+}
+
+/* Botón aleatorio */
+#randomBtn {
+    padding: 15px 40px;
+    background: linear-gradient(45deg, #2cd008, #053708);
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#randomBtn:hover {
+    background: linear-gradient(45deg, #2cd008, #053708);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================================== */
+/* 2.2 TARJETAS DE RESULTADOS */
+/* =========================================== */
+#results-section {
+    padding: 2rem 0 4rem;
+}
+
+.card {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    height: 100%;
+    background: white;
+}
+
+.card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.1);
+}
+
+.card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    min-height: 3rem;
+}
+
+.card-text {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+/* Botón "Ver más" en tarjetas */
+.btn-info {
+    background: linear-gradient(45deg, #2196F3, #21CBF3);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.btn-info:hover {
+    background: linear-gradient(45deg, #1976D2, #03A9F4);
+    transform: scale(1.05);
+    color: white;
+}
+
+/* =========================================== */
+/* 2.3 MODAL DE DETALLES */
+/* =========================================== */
+.modal-content {
+    border-radius: 20px;
+    overflow: hidden;
+    border: none;
+}
+
+.modal-header {
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.modal-body img {
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.modal-body h4 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 0.5rem;
+}
+
+.modal-body p {
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.modal-body ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.modal-body ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    color: #666;
+}
+
+.modal-body ul li:last-child {
+    border-bottom: none;
+}
+
+.modal-body strong {
+    color: #2c3e50;
+    min-width: 120px;
+    display: inline-block;
+}
+
+/* =========================================== */
+/* ALERTAS Y MENSAJES */
+/* =========================================== */
+.alert {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 1rem 1.5rem;
+    margin-top: 1rem;
+}
+
+.alert-success {
+    background: linear-gradient(45deg, #4CAF50, #8BC34A);
+    color: white;
+}
+
+.alert-warning {
+    background: linear-gradient(45deg, #FF9800, #FFC107);
+    color: white;
+}
+
+.alert-danger {
+    background: linear-gradient(45deg, #F44336, #E91E63);
+    color: white;
+}
+
+.alert-info {
+    background: linear-gradient(45deg, #2196F3, #03A9F4);
+    color: white;
+}
+
+/* =========================================== */
+/* FOOTER */
+/* =========================================== */
+footer {
+    background: linear-gradient(90deg, #2c3e50, #34495e);
+    color: white;
+    padding: 2rem 0;
+    margin-top: auto;
+}
+
+footer a {
+    color: #4CAF50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #8BC34A;
+    text-decoration: underline;
+}
+
+/* =========================================== */
+/* ANIMACIONES Y EFECTOS ESPECIALES */
+/* =========================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Skeleton loading */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 10px;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* =========================================== */
+/* RESPONSIVIDAD ADICIONAL */
+/* =========================================== */
+@media (max-width: 768px) {
+    #search-section {
+        padding: 3rem 1rem 2rem;
+        border-radius: 0 0 30px 30px;
+    }
+    
+    #search-section h1 {
+        font-size: 2rem;
+    }
+    
+    .input-group {
+        flex-direction: column;
+        border-radius: 20px;
+    }
+    
+    #searchInput {
+        border-radius: 20px 20px 0 0;
+        padding: 15px 20px;
+        text-align: center;
+    }
+    
+    #searchBtn {
+        border-radius: 0 0 20px 20px;
+        padding: 15px;
+        width: 100%;
+    }
+    
+    #randomBtn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .card-img-top {
+        height: 180px;
+    }
+    
+    .col-md-4 {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    #search-section h1 {
+        font-size: 1.8rem;
+    }
+    
+    .card {
+        margin: 0 10px;
+    }
+    
+    .modal-dialog {
+        margin: 10px;
+    }
+}
+
+/* Clase para cuando no hay resultados */
+.no-results {
+    animation: fadeIn 0.5s ease;
+    padding: 4rem 1rem;
+}
+
+.no-results i {
+    font-size: 4rem;
+    opacity: 0.3;
+    margin-bottom: 1rem;
+}
